@@ -35,6 +35,10 @@ class TestIsingModel2D:
                 e_after = model.energy()
                 assert e_after == pytest.approx(e_before + dE)
     
+    def test_update(self, model):
+        model.update()
+        assert model.spins.shape == (3, 2)
+    
     def test_simulate(self, model):
         trajectories, energies = model.simulate(steps=200, burn_in=100, save_every=1)
         assert len(trajectories) == 200
